@@ -13,21 +13,24 @@ from PIL.ExifTags import TAGS
 start_time = time.time()
 error_log_file = "Statistics/error_log.txt"
 
-# Function to extract EXIF data
+# Function to extract EXIF data with error handling
 def extract_exif_data(img_path):
     try:
         img = Image.open(img_path)
         exif_data = img._getexif()
-        
+
         if exif_data is None:
             return None
-        
+
         extracted_info = {}
         for tag_id, value in exif_data.items():
             tag_name = TAGS.get(tag_id, tag_id)
             extracted_info[tag_name] = value
-        
+
         return extracted_info
+    except (AttributeError, KeyError, TypeError, IndexError) as e:
+        print(f"Corrupt EXIF data or issue with image: {img_path}")
+        return None
     except Exception as e:
         print(f"Error extracting EXIF data: {e}")
         return None
@@ -97,36 +100,28 @@ try:
     import tensorflow as tf
     from tensorflow import keras
     model = keras.Sequential([
-    keras.layers.Conv2D(32,(3,3), activation='relu', input_shape = (48,48,3)),
-    keras.layers.MaxPool2D((2,2)),
-    keras.layers.Dropout(0.2),
-    
-    keras.layers.Conv2D(64,(3,3), activation='relu'),
-    keras.layers.MaxPool2D((2,2)),
-    keras.layers.Dropout(0.2),
-    
-    keras.layers.Conv2D(128,(3,3), activation='relu'),
-    keras.layers.MaxPool2D((2,2)),
-    keras.layers.Dropout(0.2),
-    
-    keras.layers.Conv2D(256,(3,3), activation='relu'),
-    keras.layers.MaxPool2D((2,2)),
-    keras.layers.Dropout(0.2),
-    
-    keras.layers.Flatten(),
-    keras.layers.Dense(64, activation='relu'),
-    keras.layers.Dense(64, activation='relu'),
-    keras.layers.Dense(1, activation='sigmoid')  
+        keras.layers.Conv2D(32,(3,3), activation='relu', input_shape=(48,48,3)),
+        keras.layers.MaxPool2D((2,2)),
+        keras.layers.Dropout(0.2),
+        keras.layers.Conv2D(64,(3,3), activation='relu'),
+        keras.layers.MaxPool2D((2,2)),
+        keras.layers.Dropout(0.2),
+        keras.layers.Conv2D(128,(3,3), activation='relu'),
+        keras.layers.MaxPool2D((2,2)),
+        keras.layers.Dropout(0.2),
+        keras.layers.Conv2D(256,(3,3), activation='relu'),
+        keras.layers.MaxPool2D((2,2)),
+        keras.layers.Dropout(0.2),
+        keras.layers.Flatten(),
+        keras.layers.Dense(64, activation='relu'),
+        keras.layers.Dense(64, activation='relu'),
+        keras.layers.Dense(1, activation='sigmoid')  
     ])
 
-    model.compile(
-    optimizer='adam',
-    loss='binary_crossentropy',
-    metrics=['accuracy']
-    )
+    model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
     print(model.summary())
     model.fit(X_train, y_train, epochs=15)
-    # Separate
+
     csv_file = "Statistics/execution_times.csv"
     if not os.path.exists("Statistics"):
         os.makedirs("Statistics")
