@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <style>
+        /* Ensure consistency with the previous color theme */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa; /* Light Aqua background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: rgb(14, 131, 117); /* Whale Blue */
+            padding: 30px;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+        }
+
+        .contact-info {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        .contact-info h3 {
+            color: rgb(27, 218, 196); 
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .contact-info a {
+            color: #00796b; /* Whale Blue */
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a:hover {
+            color: #00bcd4; /* Aqua Blue on hover */
+        }
+
+        footer {
+            background-color: #00796b; /* Whale Blue */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        footer a:hover {
+            color: #b2ebf2; /* Light Aqua on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .contact-info {
+                width: 95%;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Contact Us</h1>
+            <p>Feel free to reach out with any questions or feedback!</p>
+        </header>
+
+        <div class="contact-info">
+            <h3>Connect with Tanmay:</h3>
+            <p><b>Email:</b> tanmaysomani2003@gmail.com</p>
+            <p>
+                <a href="https://www.linkedin.com/in/tcode/" target="_blank">LinkedIn</a> |
+                <a href="https://github.com/Tanmay-Somani" target="_blank">GitHub</a>
+            </p>
+        </div>
+
+        <div class="contact-info">
+            <h3>Connect with Varun:</h3>
+            <p><b>Email:</b> varunpandya@gmail.com</p>
+            <p>
+                <a href="https://www.linkedin.com/in/varun-pandya/" target="_blank">LinkedIn</a> |
+                <a href="https://github.com/Pandyavarun" target="_blank">GitHub</a>
+            </p>
+        </div>
+
+        <div class="contact-info">
+            <h3>Connect with Rishabh:</h3>
+            <p><b>Email:</b> rishhhcop.md@gmail.com</p>
+            <p>
+                <a href="https://www.linkedin.com/in/rishabh-jaiswal-bb596122a/" target="_blank">LinkedIn</a> |
+                <a href="https://github.com/itsRishh" target="_blank">GitHub</a>
+            </p>
+        </div>
+
+        <footer>
+            <a href="{% url 'home' %}">Back to Home</a>
+            <a href="{% url 'docs' %}">Documentation</a>
+        </footer>
+    </div>
+</body>
+</html>
+    

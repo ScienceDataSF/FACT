@@ -1,0 +1,443 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Content Predictor - Analyze and predict if audio, images, or text are AI-generated or human-made.">
+    <title>Home</title>
+    {% load static %}
+    
+    <style>
+        .loader {
+            border: 8px solidrgb(238, 46, 197);
+            border-top: 8px solidrgb(96, 194, 214);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa; /* Light Aqua background */
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            animation: floatEffect 5s ease-in-out infinite;
+        }
+
+        h1, h2, h3 {
+            color:rgb(27, 218, 196); 
+            font-family: 'Arial', sans-serif;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        header {
+            background-color:rgb(14, 131, 117); /* Whale Blue */
+            padding: 30px;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 3rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 35px;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .upload-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            text-align: center;
+        }
+
+        .centered-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .drop-zone {
+            width: 100%;
+            max-width: 500px;
+            padding: 80px;
+            border: 2px dashed #00bcd4; /* Aqua Blue border */
+            border-radius: 10px;
+            background-color: #e0f7fa; /* Light Aqua background */
+            text-align: center;
+            color: #00796b; /* Whale Blue text */
+            margin: 20px 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+            cursor: pointer;
+            animation: dropZoneFloat 5s ease-in-out infinite;
+        }
+
+        @keyframes dropZoneFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        .drop-zone.dragover {
+            background-color: #b2ebf2; /* Light Aqua on hover */
+            border-color: #00796b; /* Whale Blue */
+        }
+
+        button {
+            padding: 12px 24px;
+            margin-top: 10px;
+            background-color: #00bcd4; /* Aqua Blue */
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+   
+        }
+
+        @keyframes buttonHover {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+
+        button:hover {
+            background-color: #0097a7; /* Whale Blue on hover */
+        }
+
+        .result {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            animation: fadeIn 1s ease-in-out;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        footer {
+            background-color: #00796b; /* Whale Blue */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #b2ebf2; /* Light Aqua on hover */
+        }
+
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Content Predictor - Analyze and predict if audio, images, or text are AI-generated or human-made.">
+    <title>AI Content Predictor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: rgb(14, 131, 117);
+            padding: 30px;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+        }
+
+        main {
+            max-width: 800px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        main h2 {
+            color: rgb(27, 218, 196);
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+
+        main p, main ul, main ol {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+
+        ol {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: #00bcd4;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-top: 30px;
+        }
+
+        .back-link:hover {
+            background-color: #0097a7;
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgb(14, 131, 117);
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            main {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .back-link {
+                width: 100%;
+                padding: 15px 0;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            header p {
+                font-size: 0.9rem;
+            }
+
+            main {
+                padding: 10px;
+            }
+
+            .back-link {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Welcome to the AI Models Website</h1>
+            <p>Drop any Image, Video, or Content/Paragraph to find out whether it is AI generated or not.</p>
+        </header>
+
+        <div class="centered-wrapper">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="upload-container">
+                    <h3>Upload File for Classification</h3>
+                    <div class="drop-zone" id="drop-zone">
+                        Drag and drop a file here or click to upload
+                    </div>
+                    <input type="file" name="audio" class="hidden-input" id="file-input" accept="audio/*,image/*,text/*">   
+                    <button id="upload-btn" type="submit" disabled>Upload</button>
+                </div>
+                <div id="file-info" style="margin-top: 10px;"></div>
+            </form>
+
+            <!-- Loader element -->
+            <div id="loader" class="loader"></div>
+
+            {% if result %}
+                <div id="result" class="result">
+                    <h2>Prediction Result: {{ result }}</h2>
+                </div>
+            {% else %}
+                <div id="result" class="result">
+                    <h2>No result yet. Please upload a file.</h2>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <footer>
+        <a href="{% url 'docs' %}">Documentation</a>
+        <a href="{% url 'contact' %}">Contact</a>
+    </footer>
+    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const fileInput = document.getElementById('file-input');
+            const uploadBtn = document.getElementById('upload-btn');
+            const resultDiv = document.getElementById('result');
+            const fileInfo = document.getElementById('file-info');
+            const dropZone = document.getElementById('drop-zone');
+            const loader = document.getElementById('loader');
+    
+            // Handle file drop or click on the drop zone
+            dropZone.addEventListener('click', () => fileInput.click());
+    
+            dropZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropZone.classList.add('dragover');
+            });
+    
+            dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+    
+            dropZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropZone.classList.remove('dragover');
+                fileInput.files = e.dataTransfer.files;
+                displayFileInfo(fileInput.files[0]);
+            });
+    
+            fileInput.addEventListener('change', (e) => {
+                displayFileInfo(e.target.files[0]);
+            });
+    
+            function displayFileInfo(file) {
+                if (file) {
+                    fileInfo.innerHTML = `<p>File accepted: <strong>${file.name}</strong> (${file.type || 'Unknown type'})</p>`;
+                    uploadBtn.disabled = false;  // Enable upload button once a file is selected
+                } else {
+                    fileInfo.innerHTML = `<p>No file selected.</p>`;
+                    uploadBtn.disabled = true;  // Disable upload button if no file is selected
+                }
+            }
+    
+            // The function that sends the file to Django when the "Upload" button is clicked
+            uploadBtn.addEventListener('click', function (e) {
+                e.preventDefault(); 
+                
+                const file = fileInput.files[0]; // Get the selected file
+                
+                // Show the loader
+                loader.style.display = 'block';
+                resultDiv.innerHTML = '';  // Clear previous result
+                
+                // Prepare FormData to send the file to Django
+                const formData = new FormData();
+                formData.append('audio', file); // 'audio' is the name attribute in the file input
+    
+                // Send the file using Fetch API
+                fetch("{% url 'home' %}", {  
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRFToken': '{{ csrf_token }}' 
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    loader.style.display = 'none';  // Hide the loader once the response is received
+                    if (data.result) {
+                        resultDiv.innerHTML = `<h2>Prediction Result: ${data.result}</h2>`;
+                    } else {
+                        resultDiv.innerHTML = `<h2>Error: No result received</h2>`;
+                    }
+                })
+                .catch(error => {
+                    loader.style.display = 'none';  // Hide the loader if an error occurs
+                    resultDiv.innerHTML = `<h2>Error: ${error.message}</h2>`;
+                });
+            });
+        });
+    </script>
+</body>
+</html>

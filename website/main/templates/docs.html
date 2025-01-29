@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Content Predictor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #e0f7fa; /* Light Aqua background */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: rgb(14, 131, 117); /* Whale Blue */
+            padding: 30px;
+            text-align: center;
+            color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+        }
+
+        .documentation-content {
+            max-width: 800px;
+            width: 90%;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .documentation-content h2 {
+            color: rgb(27, 218, 196); /* Light Aqua Text for Section Headers */
+            font-size: 1.8rem;
+            margin-top: 20px;
+        }
+
+        .documentation-content p {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .documentation-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .documentation-content li {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .usage-section {
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .usage-section h2 {
+            color: rgb(27, 218, 196); 
+        }
+
+        .usage-section ol {
+            padding-left: 20px;
+        }
+
+        .back-link {
+            display: inline-block;
+            background-color: #00bcd4; /* Aqua Blue */
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-top: 30px;
+        }
+
+        .back-link:hover {
+            background-color: #0097a7; /* Whale Blue on hover */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .documentation-content, .usage-section {
+                width: 95%;
+                margin-top: 20px;
+            }
+
+            .back-link {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>AI Content Predictor</h1>
+        <p>Analyze and predict whether content is AI-generated or human-made.</p>
+    </header>
+    <main class="documentation-content">
+        <h2>About</h2>
+        <p>The AI Content Predictor helps analyze different types of content (audio, images, text) to determine if it is AI-generated or created by a human. Upload your files to get instant predictions.</p>
+        <h2>Technologies Used</h2>
+        <ul>
+            <li><strong>HTML</strong>: For structuring the user interface.</li>
+            <li><strong>CSS</strong>: For styling and responsive design.</li>
+            <li><strong>Python</strong>: Backend language for processing and model integration.</li>
+            <li><strong>Django</strong>: Web framework for building and managing the application.</li>
+            <li><strong>TensorFlow/Keras</strong>: For deep learning model predictions.</li>
+            <li><strong>Librosa</strong>: For audio feature extraction.</li>
+            <li><strong>Joblib</strong>: For handling text vectorization and model serialization.</li>
+            <li><strong>OpenCV</strong>: For image processing.</li>
+        </ul>
+        <h2>Features</h2>
+        <ul>
+            <li>Predict whether an uploaded audio file is AI-generated or human voice.</li>
+            <li>Analyze text files to determine the likelihood of AI generation.</li>
+            <li>Examine images to identify if they are AI-created or real.</li>
+        </ul>
+
+        <h2>How to Use</h2>
+        <div class="usage-section">
+            <h2>Steps</h2>
+            <ol>
+                <li>Click the "Upload File" button.</li>
+                <li>Select an audio, image, or text file from your device.</li>
+                <li>Click "Submit" to analyze the file.</li>
+                <li>View the prediction result displayed below the upload form.</li>
+            </ol>
+        </div>
+        <a href="/" class="back-link">Go Back to Home</a>
+    </main>
+    <footer>
+        <p>&copy; 2025 AI Content Predictor. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
