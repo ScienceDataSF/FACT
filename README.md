@@ -3,6 +3,10 @@
 ## Overview
 FACT (Fake AI Content Tracker) is a web application built using Django that helps users detect AI-generated content in text, images, and audio. It utilizes machine learning models to classify input content as AI-generated or real.
 
+## Link to the Project
+This might load a little slow due to render but will shift to another platform.
+([Project](https://fact-wku3.onrender.com/))
+
 ## Features
 - **AI Text Detection**: Uses a trained TF-IDF and classification model to determine whether a given text is AI-generated.
 - **AI Image Detection**: Employs a deep learning model to classify images as real or AI-generated.
@@ -79,9 +83,11 @@ sciencedatasf-fact/
 
 ## Contributors
 - **Tanmay Somani** ([LinkedIn](https://www.linkedin.com/in/tcode/))
-- **Varun Pandya**
+- **Varun Pandya**  ([LinkedIn](https://www.linkedin.com/in/varun-pandya/)
 - **Rishabh Jaiswal**
 
 ## License
 This project is open-source and available under the MIT License.
+
+
 
